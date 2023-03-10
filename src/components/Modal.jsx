@@ -13,8 +13,8 @@ const Modal = () => {
   });
 
   return (
-    <div className="modal-container fixed top-0 left-0 w-full h-full flex items-center justify-center">
-      <div className="w-80 md:w-80 lg:w-1/3 lg:h-1/4 p-5 sm:p-10 flex items-center justify-center gap-6 flex-col bg-opacity-80 backdrop-blur-lg drop-shadow-xl rounded-lg">
+    <div className="modal-container fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-80 backdrop-blur-lg drop-shadow-xl ">
+      <div className="w-80 md:w-80 lg:w-1/3 lg:h-1/4 p-5 sm:p-10 flex items-center justify-center gap-6 flex-col bg-gray-800 drop-shadow-xl rounded-lg z-10">
         <h1 className="text-lg sm:text-xl font-medium">
           Do you want clear cart?
         </h1>

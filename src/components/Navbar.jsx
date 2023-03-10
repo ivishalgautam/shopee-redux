@@ -20,7 +20,7 @@ const Navbar = () => {
           Shopee
         </Link>
       </div>
-      <div className="flex-none ">
+      <div className="flex-none">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
