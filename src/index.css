@@ -9,4 +9,10 @@
   html {
     font-family: "Poppins", sans-serif;
   }
-} ;
+}
+
+@layer components {
+  .btn-primary {
+    @apply font-medium text-white text-lg rounded-lg bg-purple-600 hover:bg-purple-700 active:bg-purple-800 hover:-translate-y-1 transition-all;
+  }
+}

@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdRemove, MdAdd } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { openModal } from "../store/features/modalSlice";
 import Modal from "../components/Modal";
-import { deleteItem } from "../store/features/cartSlice";
+import {
+  calculateTotal,
+  decrementAmt,
+  deleteItem,
+  getCartItems,
+  incrementAmt,
+} from "../store/features/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { cartItems, amount, total } = useSelector((store) => store.cart);
   const { isOpen } = useSelector((store) => store.modal);
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
+  console.log(cartItems);
+
   if (amount < 1) {
     return (
       <div className="min-w-full min-h-full flex items-center justify-center">
@@ -21,37 +33,42 @@ const Cart = () => {
   }
   return (
     <>
-      <div className="min-h-full w-full gap-2 flex items-center justify-center flex-col">
-        {cartItems?.map((item) => {
+      <div className="min-h-full w-full gap-2 flex items-center justify-center flex-col pb-16">
+        {cartItems[0]?.map((item) => {
           return (
             <div
               key={item.id}
               className="card min-w-full card-side bg-base-100 shadow-xl block sm:flex"
             >
-              <figure className="p-10">
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  className="w-40 h-40 object-cover object-center rounded-lg"
-                />
-              </figure>
               <div className="card-body">
                 <h2 className="card-title">{item.title}</h2>
-                <p>{item.description}</p>
-                <div className="card-actions justify-start">
+                <p className="font-bold text-lg text-gray-300">{`$${item.price}`}</p>
+                <div className="card-actions flex items-center justify-start">
                   <button
-                    onClick={() => {}}
-                    className="bg-blue-400 hover:bg-blue-500 active:bg-blue-600 transition-colors text-white px-4 rounded-lg  py-2 text-lg font-medium my-auto"
+                    className="px-4 py-2 btn-primary my-auto hover:translate-y-0"
+                    onClick={() => {
+                      if (item.quantity === 1) {
+                        dispatch(deleteItem(item));
+                        return;
+                      }
+                      dispatch(decrementAmt(item));
+                    }}
+                  >
+                    <MdRemove />
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    onClick={() => {
+                      dispatch(incrementAmt(item));
+                    }}
+                    className="px-4 py-2 btn-primary my-auto hover:translate-y-0"
                   >
                     <MdAdd />
                   </button>
-                  <span></span>
-                  <button className="bg-blue-400 hover:bg-blue-500 active:bg-blue-600 transition-colors text-white px-4 rounded-lg  py-2 text-lg font-medium my-auto">
-                    <MdRemove />
-                  </button>
+
                   <button
                     className="ml-auto text-xl  btn btn-ghost btn-circle text-red-400"
-                    onClick={() => dispatch(deleteItem(item.id))}
+                    onClick={() => dispatch(deleteItem(item))}
                   >
                     <MdDeleteOutline />
                   </button>
@@ -66,7 +83,7 @@ const Cart = () => {
         <div className="w-full text-2xl flex items-center justify-around">
           <button
             onClick={() => dispatch(openModal())}
-            className="font-medium text-white text-sm px-8 py-2 rounded-lg bg-blue-400 hover:bg-blue-500 active:bg-blue-600 transition-colors drop-shadow-2xl"
+            className="font-medium text-white text-sm px-8 py-2 rounded-lg btn-primary"
           >
             Clear cart
           </button>

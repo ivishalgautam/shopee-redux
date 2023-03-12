@@ -18,15 +18,15 @@ export const itemsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getItems.pending, (state) => {
       state.isPending = true;
-    }),
-      builder.addCase(getItems.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.items.push(action.payload);
-        state.isPending = false;
-      }),
-      builder.addCase(getItems.rejected, (state) => {
-        state.isPending = false;
-      });
+    });
+    builder.addCase(getItems.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.items.push(action.payload);
+      state.isPending = false;
+    });
+    builder.addCase(getItems.rejected, (state) => {
+      state.isPending = false;
+    });
   },
 });
 

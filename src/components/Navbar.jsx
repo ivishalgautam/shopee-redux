@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { calculateTotal } from "../store/features/cartSlice";
+import SearchInput from "./SearchInput";
 
 const Navbar = () => {
   let dispatch = useDispatch();
@@ -20,7 +21,8 @@ const Navbar = () => {
           Shopee
         </Link>
       </div>
-      <div className="flex-none">
+      <SearchInput />
+      <div className="flex-none ml-2">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -53,7 +55,7 @@ const Navbar = () => {
               <div className="card-actions">
                 <Link
                   to="cart"
-                  className="text-white text-center py-2 font-bold text-lg btn-block rounded-lg bg-blue-400 hover:bg-blue-500 active:bg-blue-600 transition-colors"
+                  className="text-white text-center py-2 font-bold text-lg btn-block rounded-lg btn-primary"
                 >
                   View cart
                 </Link>

@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 const RootLayout = () => {
   return (
-    <div className="w-full min-h-screen bg-gray-900">
+    <div className="w-full min-h-screen bg-base-300">
       <Navbar />
       <main className="px-4 lg:px-20 md:px-10 sm:px-2 pb-4 flex items-center justify-center">
         <Outlet />

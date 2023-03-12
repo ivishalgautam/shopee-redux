@@ -34,7 +34,7 @@ const ProductDetails = () => {
                 perMove: 1,
                 perPage: 1,
                 gap: "2rem",
-                arrows: false,
+                arrows: true,
                 pagination: true,
               }}
             >
@@ -56,7 +56,7 @@ const ProductDetails = () => {
 
             <div className="w-full">
               <div className="flex items-center justify-between">
-                <span className="bg-gray-800 p-1 px-2 rounded-lg">{`${item.brand} product`}</span>
+                <span className="bg-base-100 p-1 px-2 rounded-lg">{`${item.brand} product`}</span>
                 <span className="font-medium">{`$${item.price}`}</span>
               </div>
               <h1 className="mt-6 text-2xl font-bold text-white">
@@ -68,7 +68,7 @@ const ProductDetails = () => {
                   dispatch(addToCart(item));
                   dispatch(incrementAmt());
                 }}
-                className="flex items-center justify-center gap-2 font-medium text-white text-sm sm:text-lg px-6 py-2 rounded-lg bg-blue-400 hover:bg-blue-500 active:bg-blue-600 transition-colors mt-4 hover:-translate-y-1 transition-transform"
+                className="flex items-center justify-center gap-2 btn-primary py-2 px-6 mt-4"
               >
                 <BsCartPlus />
                 <span>Add to cart</span>

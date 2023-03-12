@@ -22,27 +22,27 @@ const Card = ({ id, thumbnail, title, description, price, item }) => {
   }
   return (
     <Link to={`product/${id}`}>
-      <div className="card w-80 bg-base-100 shadow-xl m-0">
-        <figure className="px-6 pt-10">
+      <div className="card rounded w-80 max-w-80 hover:scale-105 transition-all bg-base-100 shadow-xl m-0">
+        <figure className="w-full h-40">
           <img
             src={thumbnail}
             alt={title}
-            className="rounded-xl h-40 object-cover object-center"
+            className=" w-full h-full object-cover object-center"
           />
         </figure>
-        <div className="card-body ">
+        <div className="card-body">
           <h2 className="card-title text-white">{trimStr(title, 18)}</h2>
-          <p className="text-sm">{trimStr(description, 50)}</p>
+          <p className="text-sm">{trimStr(description, 60)}</p>
           <p className="font-bold text-white">{`$${price}`}</p>
           <div className="card-actions w-full">
             <button
               onClick={(e) => {
                 handleClick(e);
               }}
-              className="flex items-center justify-center gap-2 mt-4 font-medium text-white text-lg px-8 w-full py-2 rounded-lg bg-blue-400 hover:bg-blue-500 active:bg-blue-600 hover:-translate-y-1 transition-colors transition-transform"
+              className="flex items-center justify-center gap-2 mt-4 px-8 w-full py-2 btn-primary"
             >
               <BsCartPlus className="pointer-events-none" />
-              <span className="pointer-events-none">Add</span>
+              <span className="pointer-events-none">Add to cart</span>
             </button>
           </div>
         </div>
