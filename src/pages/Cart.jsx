@@ -17,11 +17,6 @@ const Cart = () => {
   const { cartItems, amount, total } = useSelector((store) => store.cart);
   const { isOpen } = useSelector((store) => store.modal);
 
-  useEffect(() => {
-    dispatch(getCartItems());
-  }, []);
-  console.log(cartItems);
-
   if (amount < 1) {
     return (
       <div className="min-w-full min-h-full flex items-center justify-center">

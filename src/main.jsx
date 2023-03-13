@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./components/RootLayout";
 import ProductDetails from "./pages/ProductDetails";
+import Searched from "./pages/Searched";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index path="/" element={<App />} />
       <Route path="cart" element={<Cart />} />
       <Route path="product/:id" element={<ProductDetails />} />
+      <Route path="products/:query" element={<Searched />} />
     </Route>
   )
 );

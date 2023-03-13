@@ -4,7 +4,7 @@ const initialState = {
   cartItems: [],
   amount: 0,
   total: 0,
-  isPending: true,
+  isLoading: true,
 };
 
 export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
@@ -59,17 +59,17 @@ export const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getCartItems.pending, (state) => {
-      state.isPending = true;
+      state.isLoading = true;
     });
     builder.addCase(getCartItems.fulfilled, (state, action) => {
-      state.cartItems.push(action.payload.carts[0].products);
+      state.cartItems.push(action.payload?.carts[0]?.products);
       state.total = action.payload.carts[0].total;
       state.amount = action.payload.carts[0].totalQuantity;
-      state.isPending = false;
+      state.isLoading = false;
       // console.log(action.payload.carts[0].products);
     });
     builder.addCase(getCartItems.rejected, (state) => {
-      state.isPending = false;
+      state.isLoading = false;
     });
   },
 });

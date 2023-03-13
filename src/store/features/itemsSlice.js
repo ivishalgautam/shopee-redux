@@ -2,13 +2,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  productDetail: [],
-  isPending: true,
+  isLoading: true,
 };
 
-export const getItems = createAsyncThunk("items/getItems", async () => {
-  const data = await fetch("https://dummyjson.com/products");
-  return await data.json();
+export const getItems = createAsyncThunk("items/getItems", async (query) => {
+  // console.log(query);
+  const data = await fetch(
+    `https://dummyjson.com/products/search?q=${query ? query : ""}`
+  );
+  return data.json();
 });
 
 export const itemsSlice = createSlice({
@@ -17,15 +19,16 @@ export const itemsSlice = createSlice({
   reducer: {},
   extraReducers: (builder) => {
     builder.addCase(getItems.pending, (state) => {
-      state.isPending = true;
+      state.isLoading = true;
     });
     builder.addCase(getItems.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
+      state.items = [];
       state.items.push(action.payload);
-      state.isPending = false;
+      state.isLoading = false;
     });
     builder.addCase(getItems.rejected, (state) => {
-      state.isPending = false;
+      state.isLoading = false;
     });
   },
 });

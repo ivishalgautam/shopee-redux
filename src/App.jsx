@@ -3,24 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "./components/Card";
 import { getItems } from "./store/features/itemsSlice";
 import "./App.css";
-import { getCartItems } from "./store/features/cartSlice";
+import CardLoadingSkeloton from "./components/CardLoadingSkeloton";
+import { useParams } from "react-router-dom";
 
 function App() {
-  const { items, isPending } = useSelector((store) => store.items);
-  const { cartItems } = useSelector((store) => store.cart);
+  const { items, isLoading } = useSelector((store) => store.items);
   const dispatch = useDispatch();
+  const { query } = useParams();
   useEffect(() => {
     dispatch(getItems());
-    dispatch(getCartItems());
-  }, []);
+  }, [query]);
 
-  if (isPending) {
-    return <h1 className="text-2xl text-gray-400">loading...</h1>;
-  }
+  // if (isLoading) {
+  //   return <h1 className="text-2xl text-gray-400">loading...</h1>;
+  // }
+
   return (
     <div className="flex item-center justify-center flex-wrap gap-8">
-      {items[0]?.products?.map((item) => {
-        return <Card key={item.id} {...item} item={item} />;
+      {items[0]?.products?.map((item, key) => {
+        return isLoading ? (
+          <CardLoadingSkeloton key={key} />
+        ) : (
+          <Card key={item.id} {...item} item={item} />
+        );
       })}
     </div>
   );

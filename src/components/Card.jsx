@@ -31,7 +31,9 @@ const Card = ({ id, thumbnail, title, description, price, item }) => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-white">{trimStr(title, 18)}</h2>
+          <h2 className="card-title text-white">
+            {trimStr(title, 18) || "Loading"}
+          </h2>
           <p className="text-sm">{trimStr(description, 60)}</p>
           <p className="font-bold text-white">{`$${price}`}</p>
           <div className="card-actions w-full">

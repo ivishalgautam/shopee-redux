@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { calculateTotal } from "../store/features/cartSlice";
+import { calculateTotal, getCartItems } from "../store/features/cartSlice";
 import SearchInput from "./SearchInput";
 
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
   const { amount, total } = useSelector((store) => store.cart);
   useEffect(() => {
     dispatch(calculateTotal());
+    dispatch(getCartItems());
   }, [amount]);
 
   return (
