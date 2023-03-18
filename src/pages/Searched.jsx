@@ -16,7 +16,7 @@ const Searched = () => {
     dispatch(getSearchedItems(query));
   }, []);
 
-  if (searchedItems[0].products.length < 1) {
+  if (searchedItems[0]?.products.length < 1) {
     return (
       <div className="min-w-full min-h-full flex items-center justify-center">
         <h1 className="text-2xl text-gray-400 font-bold font-poppins">
