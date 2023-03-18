@@ -5,10 +5,8 @@ import { MdDeleteOutline } from "react-icons/md";
 import { openModal } from "../store/features/modalSlice";
 import Modal from "../components/Modal";
 import {
-  calculateTotal,
   decrementAmt,
   deleteItem,
-  getCartItems,
   incrementAmt,
 } from "../store/features/cartSlice";
 

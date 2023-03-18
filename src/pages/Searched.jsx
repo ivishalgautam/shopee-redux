@@ -14,7 +14,7 @@ const Searched = () => {
 
   useEffect(() => {
     dispatch(getSearchedItems(query));
-  }, [query]);
+  }, []);
 
   if (searchedItems[0].products.length < 1) {
     return (

@@ -9,14 +9,9 @@ import { useParams } from "react-router-dom";
 function App() {
   const { items, isLoading } = useSelector((store) => store.items);
   const dispatch = useDispatch();
-  const { query } = useParams();
   useEffect(() => {
     dispatch(getItems());
-  }, [query]);
-
-  // if (isLoading) {
-  //   return <h1 className="text-2xl text-gray-400">loading...</h1>;
-  // }
+  }, []);
 
   return (
     <div className="flex item-center justify-center flex-wrap gap-8">

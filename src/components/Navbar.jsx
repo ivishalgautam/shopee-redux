@@ -7,10 +7,14 @@ import SearchInput from "./SearchInput";
 const Navbar = () => {
   let dispatch = useDispatch();
   const { amount, total } = useSelector((store) => store.cart);
+
   useEffect(() => {
     dispatch(calculateTotal());
-    dispatch(getCartItems());
   }, [amount]);
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
 
   return (
     <div className="navbar bg-base-100 mb-4 sticky top-0 z-10 px-6 lg:px-40 md:px-30 sm:px-20  bg-opacity-80 backdrop-blur-lg drop-shadow-xl">
