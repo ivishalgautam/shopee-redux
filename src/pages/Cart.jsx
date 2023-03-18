@@ -4,6 +4,7 @@ import { MdRemove, MdAdd } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { openModal } from "../store/features/modalSlice";
 import Modal from "../components/Modal";
+import CartEmpty from "../components/CartEmpty.jsx";
 import {
   decrementAmt,
   deleteItem,
@@ -16,13 +17,7 @@ const Cart = () => {
   const { isOpen } = useSelector((store) => store.modal);
 
   if (amount < 1) {
-    return (
-      <div className="min-w-full min-h-full flex items-center justify-center">
-        <h1 className="text-2xl text-gray-400 font-bold font-poppins">
-          Your cart is empty :/
-        </h1>
-      </div>
-    );
+    return <CartEmpty />;
   }
   return (
     <>
