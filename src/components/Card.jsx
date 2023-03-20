@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { BsCartPlus } from "react-icons/bs";
-import { incrementAmt, addToCart } from "../store/features/cartSlice";
+import { incrementAmt, addToCart, addCart } from "../store/features/cartSlice";
 
 const Card = ({ id, thumbnail, title, description, price, item }) => {
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ const Card = ({ id, thumbnail, title, description, price, item }) => {
     return str;
   }
 
-  function handleClick(e) {
+  function handleClick(e, id) {
     if (e.target.tagName === "BUTTON") {
       e.preventDefault();
-      dispatch(addToCart(item));
-      dispatch(incrementAmt());
+      dispatch(addCart(id));
+      // dispatch(incrementAmt());
     }
   }
   return (
@@ -39,7 +39,7 @@ const Card = ({ id, thumbnail, title, description, price, item }) => {
           <div className="card-actions w-full">
             <button
               onClick={(e) => {
-                handleClick(e);
+                handleClick(e, id);
               }}
               className="flex items-center justify-center gap-2 mt-4 px-8 w-full py-2 btn-primary"
             >

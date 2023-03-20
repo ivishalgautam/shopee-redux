@@ -27,7 +27,7 @@ export const searchedItemsSlice = createSlice({
       state.isLoading = false;
       state.searchedItems = [];
       state.searchedItems.push(action.payload);
-      console.log(action.payload);
+      // console.log(action.payload);
     });
     builder.addCase(getSearchedItems.rejected, (state) => {
       state.isLoading = false;

@@ -13,7 +13,6 @@ const SearchInput = () => {
   }
 
   function handleSubmit(e) {
-    console.log("enter");
     e.preventDefault();
     dispatch(getSearchedItems(query));
     navigate(`products/${query}`);

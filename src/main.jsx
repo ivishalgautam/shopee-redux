@@ -23,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="cart" element={<Cart />} />
       <Route path="product/:id" element={<ProductDetails />} />
       <Route path="products/:query" element={<Searched />} />
+      <Route path="products/:query/product/:id" element={<ProductDetails />} />
     </Route>
   )
 );

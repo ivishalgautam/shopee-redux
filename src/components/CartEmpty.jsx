@@ -9,7 +9,7 @@ const CartEmpty = () => {
         width="500"
         height="400"
         viewBox="0 0 896 747.97143"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <title>empty_cart</title>
         <path

@@ -15,6 +15,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { cartItems, amount, total } = useSelector((store) => store.cart);
   const { isOpen } = useSelector((store) => store.modal);
+  // console.log(cartItems);
 
   if (amount < 1) {
     return <CartEmpty />;

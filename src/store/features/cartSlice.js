@@ -8,8 +8,25 @@ const initialState = {
 };
 
 export const getCartItems = createAsyncThunk("cart/getCartItems", async () => {
-  const res = await fetch("https://dummyjson.com/carts");
-  return res.json();
+  const res = await fetch("https://dummyjson.com/carts/user/5");
+  return await res.json();
+});
+
+export const addCart = createAsyncThunk("cart/addCart", async (id) => {
+  const res = await fetch("https://dummyjson.com/carts/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: 5,
+      products: [
+        {
+          id: id,
+          quantity: 1,
+        },
+      ],
+    }),
+  });
+  return await res.json();
 });
 
 export const cartSlice = createSlice({
@@ -63,13 +80,21 @@ export const cartSlice = createSlice({
     });
     builder.addCase(getCartItems.fulfilled, (state, action) => {
       state.cartItems.push(action.payload?.carts[0]?.products);
-      state.total = action.payload.carts[0].total;
-      state.amount = action.payload.carts[0].totalQuantity;
+      state.total = action.payload?.carts[0]?.total;
+      state.amount = action.payload?.carts[0]?.totalQuantity;
       state.isLoading = false;
-      // console.log(action.payload.carts[0].products);
+      console.log(action.payload.carts[0].products);
     });
     builder.addCase(getCartItems.rejected, (state) => {
       state.isLoading = false;
+    });
+
+    // builder.addCase(addCart.pending,(state)=>{
+    // })
+    builder.addCase(addCart.fulfilled, (state, action) => {
+      state.amount = state.amount + 1;
+      state.cartItems[0].push(action.payload?.products[0]);
+      console.log(action.payload?.products[0]);
     });
   },
 });
