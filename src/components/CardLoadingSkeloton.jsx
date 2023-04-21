@@ -2,7 +2,7 @@ import React from "react";
 
 const CardLoadingSkeloton = () => {
   return (
-    <div className="flex flex-col items-start justify-between gap-4 w-60 rounded-lg sm:w-80 min-w-96 border border-gray-600">
+    <div className="flex flex-col items-start justify-between gap-4 w-60 rounded-lg sm:w-80 min-w-96 border border-gray-700">
       <div className="animate-pulse bg-slate-700 w-full h-40 rounded-lg"></div>
       <div className="p-6 flex items-start justify-between flex-col gap-4 w-full">
         <div className="animate-pulse w-24 h-6 bg-slate-700 rounded"></div>

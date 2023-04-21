@@ -22,7 +22,7 @@ const Card = ({ id, thumbnail, title, description, price, item }) => {
   }
   return (
     <Link to={`product/${id}`}>
-      <div className="card rounded w-80 max-w-80 hover:scale-105 transition-all bg-base-100 shadow-xl m-0">
+      <div className="card rounded w-80 max-w-80 hover:scale-105 border border-gray-700 transition-all bg-base-100 shadow-xl m-0">
         <figure className="w-full h-40">
           <img
             src={thumbnail}
