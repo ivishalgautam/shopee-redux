@@ -5,12 +5,15 @@ const initialState = {
   isLoading: true,
 };
 
-export const getItems = createAsyncThunk("items/getItems", async (query) => {
-  // console.log(query);
-  const data = await fetch(
-    `https://dummyjson.com/products/search?q=${query ? query : ""}`
-  );
-  return data.json();
+const delay = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+export const getItems = createAsyncThunk("items/getItems", async (delay) => {
+  // await delay(3000);
+  return new Promise((resolve) => setTimeout(resolve, delay)).then(async () => {
+    const data = await fetch(`https://dummyjson.com/products`);
+    return await data.json();
+  });
 });
 
 export const itemsSlice = createSlice({

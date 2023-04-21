@@ -10,18 +10,18 @@ function App() {
   const { items, isLoading } = useSelector((store) => store.items);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(getItems(2000));
   }, []);
 
   return (
     <div className="flex item-center justify-center flex-wrap gap-8">
-      {items[0]?.products?.map((item, key) => {
-        return isLoading ? (
-          <CardLoadingSkeloton key={key} />
-        ) : (
-          <Card key={item.id} {...item} item={item} />
-        );
-      })}
+      {isLoading
+        ? Array.from({ length: 12 }, (movie, i) => {
+            return <CardLoadingSkeloton key={i} />;
+          })
+        : items[0]?.products?.map((item, key) => {
+            return <Card key={item.id} {...item} item={item} />;
+          })}
     </div>
   );
 }
