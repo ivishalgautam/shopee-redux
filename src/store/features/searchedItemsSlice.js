@@ -8,10 +8,14 @@ const initialState = {
 export const getSearchedItems = createAsyncThunk(
   "items/serachedItems",
   async (query) => {
-    const resp = await fetch(
-      `https://dummyjson.com/products/search?q=${query}`
+    return new Promise((resolve) => setTimeout(resolve, 2000)).then(
+      async () => {
+        const resp = await fetch(
+          `https://dummyjson.com/products/search?q=${query}`
+        );
+        return resp.json();
+      }
     );
-    return resp.json();
   }
 );
 
@@ -22,6 +26,7 @@ export const searchedItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getSearchedItems.pending, (state) => {
       state.isLoading = true;
+      state.searchedItems = [];
     });
     builder.addCase(getSearchedItems.fulfilled, (state, action) => {
       state.isLoading = false;

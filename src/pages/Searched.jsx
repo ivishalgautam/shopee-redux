@@ -14,7 +14,7 @@ const Searched = () => {
 
   useEffect(() => {
     dispatch(getSearchedItems(query));
-  }, []);
+  }, [query]);
 
   if (searchedItems[0]?.products.length < 1) {
     return (
@@ -28,13 +28,13 @@ const Searched = () => {
 
   return (
     <div className="flex item-center justify-center flex-wrap gap-8">
-      {searchedItems[0]?.products?.map((item, key) => {
-        return isLoading ? (
-          <CardLoadingSkeloton key={key} />
-        ) : (
-          <Card key={item.id} {...item} item={item} />
-        );
-      })}
+      {isLoading
+        ? Array.from({ length: 6 }, (movie, i) => {
+            return <CardLoadingSkeloton key={i} />;
+          })
+        : searchedItems[0]?.products?.map((item, key) => {
+            return <Card key={item.id} {...item} item={item} />;
+          })}
     </div>
   );
 };

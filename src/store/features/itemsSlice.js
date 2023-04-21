@@ -5,9 +5,6 @@ const initialState = {
   isLoading: true,
 };
 
-const delay = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
 export const getItems = createAsyncThunk("items/getItems", async (delay) => {
   // await delay(3000);
   return new Promise((resolve) => setTimeout(resolve, delay)).then(async () => {
@@ -23,6 +20,7 @@ export const itemsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getItems.pending, (state) => {
       state.isLoading = true;
+      state.items = [];
     });
     builder.addCase(getItems.fulfilled, (state, action) => {
       // console.log(action.payload);
